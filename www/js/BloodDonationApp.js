@@ -42,14 +42,14 @@ angular.module("BloodDonationApp", [
              }
          })
 
-    .state('requestDetails', {
-       
-        url: "/RequestDetails/:id",
-        view: {
-            "mainContent": {
-                templateUrl: "templates/requestDetails.html"
-                
-            }
+    .state('home.requestDetails', {  
+               url: "/feeds/:id",  
+              views: {  
+                'tab-feeds' :{  
+                   templateUrl: "templates/requestDetails.html"  
+
+
+        }
         }
     })
         .state('requestDetails.ClientRegister', {
