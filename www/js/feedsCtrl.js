@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
 
     angular.module('BloodDonationApp')
@@ -29,7 +29,7 @@
             return $scope.shownGroup === requests;
         }
         $scope.goToDetails = function() {
-            $state.go('requestDetails', {id : 5});
+            $state.go('home.requestDetails', {id : 5});
         }
        
 
