@@ -42,16 +42,25 @@ angular.module("BloodDonationApp", [
              }
          })
 
-    .state('requestDetails', {
-       
-        url: "/RequestDetails/:id",
-        view: {
-            "mainContent": {
-                templateUrl: "templates/requestDetails.html"
-                
+//    .state('requestDetails', {
+//       
+//        url: "/RequestDetails/:id",
+//        view: {
+//            "mainContent": {
+//                templateUrl: "templates/requestDetails.html"
+//                
+//            }
+//        }
+//    })
+        // you are inside a nested state when you are trying to load the requestDetails
+        .state('home.requestDetails', {
+          url: "/feeds/:id",
+          views: {
+            'tab-feeds' :{
+              templateUrl: "templates/requestDetails.html"
             }
-        }
-    })
+          }
+        })
         .state('requestDetails.ClientRegister', {
             url: "/Client-Register/:id",
             view: {
