@@ -33,32 +33,33 @@ angular.module("BloodDonationApp", [
             }
         }
     })
+   .state('home.settings', {
+             url: "/settings",
+             views: {
+                 "tab-settings": {
+                     templateUrl: "templates/settings.html"
+                 }
+             }
+         })
 
-    .state('home.requestDetails', {
-        url: "/Request-Details/:id",
+    .state('requestDetails', {
+       
+        url: "/RequestDetails/:id",
         view: {
             "mainContent": {
                 templateUrl: "templates/requestDetails.html"
+                
             }
         }
     })
-        .state('home.ClientRegister', {
+        .state('requestDetails.ClientRegister', {
             url: "/Client-Register/:id",
             view: {
                 "mainContent": {
                     templateUrl: "templates/ClientRegister.html"
                 }
             }
-        })
-
-    .state('home.settings', {
-        url: "/settings",
-        views: {
-            "tab-settings": {
-                templateUrl: "templates/settings.html"
-            }
-        }
-    });
+        });
 
     //if name of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/home/feeds');

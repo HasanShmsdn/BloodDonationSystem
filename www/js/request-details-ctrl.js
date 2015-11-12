@@ -1,13 +1,18 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('BloodDonationApp').controller('requestDetailsCtrl', ['$stateParams','BloodDonationApi', '$scope', requestDetailsCtrl]);
+    angular.module('BloodDonationApp')
+        .controller('RequestDetailsCtrl', ['BloodDonationApi', '$stateParams', '$scope', RequestDetailsCtrl]);
 
-    function requestDetailsCtrl($stateParams,BloodDonationApi, $scope) {
+    function RequestDetailsCtrl(BloodDonationApi, $stateParams, $scope) {
         var vm = this;
-       console.log("$stateParams",$stateParams)
-       
+        var data = BloodDonationApi.getRequests();
+        console.log(data);
+        vm.requestDetails = data;
+        console.log("$stateParams", $stateParams.id);
+        
         //end Data Binding//
+        //  Get you request
 
 
     };

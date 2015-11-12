@@ -12,9 +12,10 @@
         function getRequests() {
             return requests;
         }
+
         return {
             getRequests: getRequests
-        };
+    };
     };
 
 })();
