@@ -53,7 +53,7 @@ angular.module("BloodDonationApp", [
     })
         .state('home.ClientRegister', {
             url: "/register/:id",
-            view: {
+            views: {
                 "tab-feeds": {
                     templateUrl: "templates/ClientRegister.html"
                 }
