@@ -29,7 +29,7 @@
             return $scope.shownGroup === requests;
         }
         $scope.goToDetails = function() {
-            $state.go('home.requestDetails', {id : 5});
+            $state.go('home.request', {id : 5});
         }
        
 

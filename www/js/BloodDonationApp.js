@@ -18,32 +18,31 @@ angular.module("BloodDonationApp", [
     //****************ROUTES***************//
 .config(function ($stateProvider, $urlRouterProvider) {
 
-    $stateProvider
-    .state('home', {
-        abstarct: true,
-        url: "/home",
-        templateUrl: "templates/home.html"
-    })
-
-    .state('home.feeds', {
-        url: "/feeds",
-        views: {
-            "tab-feeds": {
-                templateUrl: "templates/feeds.html"
-            }
-        }
-    })
-   .state('home.settings', {
-             url: "/settings",
-             views: {
-                 "tab-settings": {
-                     templateUrl: "templates/settings.html"
-                 }
-             }
-         })
-
-    .state('home.requestDetails', {  
-               url: "/feeds/:id",  
+        $stateProvider
+            .state('home', {
+                abstarct: true,
+                url: "/home",
+                templateUrl: "templates/home.html"
+            })
+            .state('home.feeds', {
+                url: "/feeds",
+                views: {
+                    "tab-feeds": {
+                        templateUrl: "templates/feeds.html"
+                    }
+                }
+            })
+            .state('home.settings', {
+                url: "/settings",
+                views: {
+                    "tab-settings": {
+                        templateUrl: "templates/settings.html"
+                    }
+                }
+            })
+            .state('home.request', {
+                
+               url: "/details/:id",  
               views: {  
                 'tab-feeds' :{  
                    templateUrl: "templates/requestDetails.html"  
@@ -52,10 +51,10 @@ angular.module("BloodDonationApp", [
         }
         }
     })
-        .state('requestDetails.ClientRegister', {
-            url: "/Client-Register/:id",
+        .state('home.ClientRegister', {
+            url: "/register/:id",
             view: {
-                "mainContent": {
+                "tab-feeds": {
                     templateUrl: "templates/ClientRegister.html"
                 }
             }
