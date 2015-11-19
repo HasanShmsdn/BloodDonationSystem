@@ -6,5 +6,5 @@
     [ClientLocation] NCHAR(10) NULL, 
     [ClientRegistration] NCHAR(10) NULL, 
     [ClientBloodType] NCHAR(10) NULL, 
-    [UDID] NCHAR(10) NULL
+    [UUID] NCHAR(10) NULL
 )
