@@ -1,3 +1,4 @@
+var local = "http://localhost:8080/api/";
 (function () {
     'use strict';
 

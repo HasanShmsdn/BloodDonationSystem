@@ -5,5 +5,8 @@
     [MembPosition] NCHAR(10) NULL, 
     [MembPhone] NCHAR(10) NULL, 
     [MembEmail] NCHAR(10) NULL, 
-    [HospId] INT NULL
+    [HospId] INT NULL, 
+    [Password] NVARCHAR(50) NULL, 
+    [Lastlogin] DATETIME NULL, 
+    [IsAdmin] BIT NULL
 )
