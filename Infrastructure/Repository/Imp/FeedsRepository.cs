@@ -4,16 +4,17 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Models;
 
 namespace Infrastructure.Repository.Imp
 {
-    class FeedsRepository: DbRepository, IFeedsRepository
+    public class FeedsRepository: DbRepository, IFeedsRepository
     {
-        public void InsertFeeds(Feeds v)
+        public void InsertFeeds(Feeds feeds)
         {
             using (var cnn = OpenConnection())
             {
-                var id = cnn.Insert(Feeds);
+                var id = cnn.Insert(feeds);
             }
         }
 
@@ -29,13 +30,13 @@ namespace Infrastructure.Repository.Imp
                 "Select ";
             using (var cnn = OpenConnection())
             {
-                return cnn.Query(query).Select(x=> new Feeds()
+                return cnn.Query(query).Select(x => new Feeds()
                 {
-                    UserId = x.UserId,
+                    HospId = x.HospId,
                     Date = x.Date,
                     Id = x.BID,
                     BloodType = x.BloodType,
-                })
+                }).ToArray();
             }
         }
 
