@@ -5,7 +5,7 @@
     [UnitNB] NCHAR(10) NULL, 
     [UnitDonor] NCHAR(10) NULL, 
     [UnitOffered] NCHAR(10) NULL, 
-    [UnitRequest] NCHAR(10) NULL, 
+    [UnitRequired] NCHAR(10) NULL, 
     [HospId] NCHAR(10) NULL, 
     [Date] DATETIME NULL 
 )

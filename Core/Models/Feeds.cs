@@ -12,7 +12,7 @@ namespace Core.Models
         [Key]
         public int BloodRequestId { set; get; }
         public string UnitType { set; get; }
-        public int UnitRequest { set; get; }
+        public int UnitRequired { set; get; }
         public int UnitOffered { set; get; }
         public int UnitDonor { set; get; }
         public DateTime Date { set; get; }

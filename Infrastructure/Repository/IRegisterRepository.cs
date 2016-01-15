@@ -7,12 +7,12 @@ using Core.Models;
 
 namespace Infrastructure.Repository
 {
-    interface IRegisterRepository
+    public interface IRegisterRepository
     {
-        void InsertRegister(Register v);
+        void InsertRegister(Register register);
         Register[] SelectAllRegisters();
-        void UpdateRegister(Register v);
-        void DeleteRegister(int v);
+        void UpdateRegister(Register register);
+        void DeleteRegister(int val);
         Register GetRegister(int id);
         Register[] SelectRegisters(int id, out int total);
     }

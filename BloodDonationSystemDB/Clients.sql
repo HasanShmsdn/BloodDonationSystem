@@ -4,7 +4,7 @@
     [ClientName] NCHAR(10) NULL, 
     [ClientPhoneNb] NCHAR(10) NULL, 
     [ClientLocation] NCHAR(10) NULL, 
-    [ClientRegistration] NCHAR(10) NULL, 
+    [ClientRegistration] BIT NULL, 
     [ClientBloodType] NCHAR(10) NULL, 
-    [UUID] NCHAR(10) NULL
+    [UuId] NCHAR(10) NULL
 )

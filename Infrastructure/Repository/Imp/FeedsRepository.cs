@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Models;
+using Dapper;
 
 namespace Infrastructure.Repository.Imp
 {
@@ -14,50 +15,80 @@ namespace Infrastructure.Repository.Imp
         {
             using (var cnn = OpenConnection())
             {
-                var id = cnn.Insert(feeds);
+
+               var id = cnn.Insert(feeds);
             }
         }
 
-        public Feeds[] GetFeedsByUserId(int userId)
+        public Feeds[] GetFeedsByHospId(int hospId)
         {
-            var tab = cnn.GetList<Feeds>().Where(x => x.UserId == userId).OrderByDescending(x => x.Date).ToArray();
-            return tab;
+
+            using (var cnn = OpenConnection())
+            {
+                var tab = cnn.GetList<Feeds> ().Where(x => x.HospId == hospId).OrderByDescending(x => x.Date).ToArray();
+                return tab;
+
+            }
         }
 
         public Feeds[] GetAllFeeds()
         {
             var query = 
-                "Select ";
+                "Select r.Id as RID, b.HospId as HsopId,b.UnitType as UnitType, b.Date as Date, b.UnitRequired as UnitRequired, b.UnitOffered as UnitOffered, b.UnitDonor as UnitDonor, u.HospName from Feeds b inner join Hosp u on u.Id = b.HospId Order by Date Desc   ";
             using (var cnn = OpenConnection())
             {
                 return cnn.Query(query).Select(x => new Feeds()
                 {
                     HospId = x.HospId,
                     Date = x.Date,
-                    Id = x.BID,
-                    BloodType = x.BloodType,
+                    BloodRequestId = x.RID,
+                    UnitType = x.UType,
+                    UnitDonor = x.UnitDonor,
+                    UnitOffered = x.UnitOffered,
+                    UnitRequired = x.UnitRequired, 
                 }).ToArray();
             }
         }
 
-        public void UpdateFeeds(Feeds v)
+        public void UpdateFeeds(Feeds feeds)
         {
-            throw new NotImplementedException();
+            using (var cnn = OpenConnection())
+            {
+                cnn.Update(feeds);
+            }
         }
 
-        public void DeleteFeeds(int v)
+        public void DeleteFeeds(int val)
         {
-            throw new NotImplementedException();
+            using (var cnn = OpenConnection())
+            {
+                cnn.Delete<Feeds>(val);
+            }
         }
 
         public Feeds GetFeeds(int id)
         {
-            throw new NotImplementedException();
+            using (var cnn = OpenConnection())
+            {
+                var tab = cnn.Get<Feeds>(id);
+                return tab;
+            }
         }
 
         public Feeds[] SelectFeeds(int id, out int total)
         {
-            throw new NotImplementedException();
+            using (var cnn = OpenConnection())
+            {
+                var tab = cnn.GetList<Feeds>().OrderByDescending(x => x.Date).ToArray();
+                var totalcount = tab.Count();
+                var currentpage = id;
+                const int pagesize = 3;
+                total = (int)Math.Ceiling((double)totalcount / pagesize);
+                var pagetab = tab.Skip((currentpage - 1) * pagesize)
+                                    .Take(pagesize)
+                                    .ToArray();
+                return pagetab;
+            }
         }
     }
 }

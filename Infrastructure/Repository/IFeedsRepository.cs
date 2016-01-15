@@ -11,7 +11,7 @@ namespace Infrastructure.Repository
     {
         void InsertFeeds(Feeds v);
 
-        Feeds[] GetFeedsByUserId(int userId);
+        Feeds[] GetFeedsByHospId(int hospId);
 
         void UpdateFeeds(Feeds v);
 
