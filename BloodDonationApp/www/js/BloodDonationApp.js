@@ -1,11 +1,14 @@
 angular.module("BloodDonationApp", [
     "ionic",
-    "angular-cache"
+    "angular-cache",
+    "ngStorage",
+    "toaster",
+
     
  
 ])
 
-.run(function ($ionicPlatform, CacheFactory) {
+.run(function ($ionicPlatform, CacheFactory, $http, BloodDonationApi) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.keyboard) {
             cordova.plugins.keyboard.hidekeyboardAccessoryBar(true);

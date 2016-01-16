@@ -2,9 +2,9 @@ var local = "http://localhost:21466/api/";
 (function () {
     'use strict';
 
-    angular.module('BloodDonationApp').factory('BloodDonationApi', ['$ionicLoading','$stateParams','$q','CacheFactory','$http',BloodDonationApi]);
+    angular.module('BloodDonationApp').factory('BloodDonationApi', ['$http','$ionicLoading','$stateParams','$q','CacheFactory',BloodDonationApi]);
 
-    function BloodDonationApi($ionicLoading,$stateParams,$q,CacheFactory,$http) {
+    function BloodDonationApi($http,$ionicLoading,$stateParams,$q,CacheFactory) {
         self.FeedsCache = CacheFactory.get("FeedsCache");
         self.FeedsCache.setOptions({
             onExpire: function (key, value) {

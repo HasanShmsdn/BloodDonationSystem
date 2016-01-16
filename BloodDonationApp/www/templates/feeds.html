@@ -1,8 +1,9 @@
-﻿
-<ion-view ng-controller="FeedsCtrl as vm">
+﻿<ion-view ng-controller="FeedsCtrl as vm">
     <ion-content class="has-header">
-        
-        <div class="card" ng-repeat="requests in vm.feeds">
+        <ion-refresher pulling-text="Pull to refresh..." 
+                       on-refresh="vm.loadList(true)">
+                    </ion-refresher>
+            <div class="card" ng-repeat="requests in vm.feeds">
             <div class="item item divider" ng-click="toggleGroup(requests)"
                  ng-class="{active: isGroupShown(requests)}">
                 <div class="row row-bottom">
@@ -38,8 +39,5 @@
                 </div>
             </div>
         </div>
-        
-       
-
-    </ion-content>
+</ion-content>
 </ion-view>
