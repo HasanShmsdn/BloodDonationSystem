@@ -6,10 +6,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Microsoft.AspNet.Identity;
 
 namespace Api
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : System.Web.HttpApplication, IUser<string>
     {
         protected void Application_Start()
         {

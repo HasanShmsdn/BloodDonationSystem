@@ -3,12 +3,13 @@ angular.module("BloodDonationApp", [
     "angular-cache",
     "ngStorage",
     "toaster",
+    "ngStorage"
 
     
  
 ])
 
-.run(function ($ionicPlatform, CacheFactory, $http, BloodDonationApi) {
+.run(function ($ionicPlatform,  CacheFactory, $http, BloodDonationApi) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.keyboard) {
             cordova.plugins.keyboard.hidekeyboardAccessoryBar(true);
@@ -17,9 +18,21 @@ angular.module("BloodDonationApp", [
             //org.apache.cordova.statusbar required
             statusbar.styleDefault();
         }
-        CacheFactory("FeedsCache", { storageMode: "localStorage", maxAge: 5000000, deleteOnExpire: "aggressive" });
+       
     });
 })
+/*.service(function(CacheFactory) {
+    var FeedsCache;
+    if (!CacheFactory.get("FeedsCache")) {
+        CacheFactory.createCache("FeedsCache", { storageMode: "localStorage", maxAge: 5000000, deleteOnExpire: "aggressive" });
+        var FeedsCache = CacheFactory.get("FeedsCache");
+        return {
+            findFeedsById: function(id) {
+                return $http.get('/api/Feeds/' + id, { cache: FeedsCache });
+            }
+        }
+    }
+    })*/
     //****************ROUTES***************//
 .config(function (CacheFactoryProvider, $stateProvider, $urlRouterProvider) {
 

@@ -5,10 +5,9 @@
     angular.module('BloodDonationApp')
         .controller('FeedsCtrl', ['BloodDonationApi', '$http','$window','$location','$scope', 'CacheFactory', FeedsCtrl]);
 
-    function FeedsCtrl(BloodDonationApi, $http, $scope, $state, $window, $location, CacheFactory) {
+    function FeedsCtrl(BloodDonationApi, $http, $window, $location, $scope, CacheFactory) {
         var vm = this;
-       
-            var cache = CacheFactory.get("RegisterCache");
+        var cache = CacheFactory.get("ClientRegisterCache");
              vm.loadList = function(forceRefresh) {
             BloodDonationApi.getfeeds(forceRefresh).then(function(data) {
                 vm.feeds = data;

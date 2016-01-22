@@ -251,7 +251,7 @@
     <Compile Include="Models\CreateUserForm.cs" />
     <Compile Include="Models\LoginForm.cs" />
     <Compile Include="Models\Mappers\IAddUserMapper.cs" />
-    <Compile Include="Models\Mappers\IFeddsMapper.cs" />
+    <Compile Include="Models\Mappers\IFeedsMapper.cs" />
     <Compile Include="Models\Mappers\ILoginMapper.cs" />
     <Compile Include="Models\Mappers\Imp\AddUserMapper.cs" />
     <Compile Include="Models\Mappers\Imp\FeedsMapper.cs" />
@@ -326,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CMS\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
