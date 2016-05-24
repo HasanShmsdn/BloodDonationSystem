@@ -13,11 +13,11 @@ using Infrastructure.Repository.Imp;
 
 namespace Api.Controllers
 {
-   public class FeedsController : ApiController
+    [RoutePrefix("api/feeds")]
+    public class FeedsController : ApiController
     {
         private FeedsRepository _feedsRepository;
         private FeedsMapper _feedsMapper;
-
 
         public FeedsController()
         {
@@ -25,14 +25,16 @@ namespace Api.Controllers
             _feedsMapper = new FeedsMapper();
         }
         [HttpGet]
+        [Route("FeedsByHospId/{id}")]
         // Get api/Feeds
-        public IEnumerable<Feeds> Getall([FromUri] int id)
+        public IEnumerable<Feeds> FeedsByHospId([FromUri] int id)
         {
             var feeds = _feedsRepository.GetFeedsByHospId(id);
             return feeds;
         }
+
         [HttpGet]
-        // Get api/Feeds
+        [Route("")]
         public IEnumerable<Feeds> Getall()
         {
             var feeds = _feedsRepository.GetAllFeeds();
@@ -40,7 +42,8 @@ namespace Api.Controllers
         }
         // GET api/values/5
         [HttpGet]
-        public IHttpActionResult Getrequest(int id)
+        [Route("{id}")]
+        public IHttpActionResult Get(int id)
         {
             var n = _feedsRepository.GetFeeds(id);
             if (n == null)
@@ -49,26 +52,17 @@ namespace Api.Controllers
             }
             return Ok(n);
         }
-        [HttpGet]
-        public IHttpActionResult Getnext(int id)
-        {
-            var total = 0;
-            var feeds = _feedsRepository.SelectFeeds(id, out total);
-            var data = new { feeds, total };
-            return Ok(data);
-        }
-        [HttpGet]
-        // GET api/default1/5
-        public IHttpActionResult Getnew(int id)
-        {
-            Feeds feeds = _feedsRepository.GetFeeds(id);
 
-            if (feeds == null)
-            {
-                return NotFound();
-            }
-            return Ok(feeds);
-        }
+        //[HttpGet]
+        //[ActionName("GetNext")]
+        //public IHttpActionResult Getnext(int id)
+        //{
+        //    var total = 0;
+        //    var feeds = _feedsRepository.SelectFeeds(id, out total);
+        //    var data = new { feeds, total };
+        //    return Ok(data);
+        //}
+
         [HttpPost]
         public void PostFeeds([FromBody]FeedsForm feeds)
         {
@@ -88,12 +82,14 @@ namespace Api.Controllers
 
             _feedsRepository.UpdateFeeds(map);
         }
-        [HttpPost]
-        public void PutRegister([FromUri]int id)
-        {
-            var n = _feedsRepository.GetFeeds(id);
-            n.UnitDonor++;
-            _feedsRepository.UpdateFeeds(n);
-        }
+
+        //[HttpPost]
+        //[ActionName("Register")]
+        //public void PutRegister([FromUri]int id)
+        //{
+        //    var n = _feedsRepository.GetFeeds(id);
+        //    n.UnitDonor++;
+        //    _feedsRepository.UpdateFeeds(n);
+        //}
     }
 }

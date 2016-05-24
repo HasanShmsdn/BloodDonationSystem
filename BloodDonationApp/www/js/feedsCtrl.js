@@ -23,7 +23,7 @@
         //};
              vm.loadList(false);
 
-        $scope.donte= function(id) {
+        $scope.donate= function(id) {
             $http.post(baseService + "Feeds/PutRegister/" + id)
                 .sucess(function(data) {
                     $location.path("/feeds");

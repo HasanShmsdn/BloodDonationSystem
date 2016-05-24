@@ -59,10 +59,11 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="BloodRequest.sql" />
     <Build Include="HospitalDetails.sql" />
     <Build Include="HospMemebers.sql" />
     <Build Include="Clients.sql" />
+    <Build Include="DonorDetails.sql" />
+    <Build Include="Feeds.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BloodDonationSystemDB.refactorlog" />

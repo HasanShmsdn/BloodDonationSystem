@@ -43,7 +43,7 @@ var local = "http://localhost:21466/api/";
                 $ionicLoading.show({
                     template: '...Loading'
                 });
-                $http.get(local + "Feeds/Getall").success(function (data) {
+                $http.get(local + "feeds/").success(function (data) {
                     self.FeedsCache.put(cacheKey, data);
                     $ionicLoading.hide();
                     deferred.resolve(data);

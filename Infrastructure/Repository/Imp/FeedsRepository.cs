@@ -33,16 +33,19 @@ namespace Infrastructure.Repository.Imp
 
         public Feeds[] GetAllFeeds()
         {
-            var query = 
-                "Select r.Id as RID, b.HospId as HsopId,b.UnitType as UnitType, b.Date as Date, b.UnitRequired as UnitRequired, b.UnitOffered as UnitOffered, b.UnitDonor as UnitDonor, u.HospName from Feeds b inner join Hosp u on u.Id = b.HospId Order by Date Desc   ";
+            var query =
+                "Select b.BloodRequestId as RID, b.HospId as HospId,b.UnitType as UnitType, b.Date as Date, b.UnitRequired as UnitRequired, b.UnitOffered as UnitOffered, b.UnitDonor as UnitDonor, u.HospName " +
+                  "from Feeds b inner join HospitalDetails u on u.HospId = b.HospId Order by Date Desc   ";
+
             using (var cnn = OpenConnection())
             {
                 return cnn.Query(query).Select(x => new Feeds()
                 {
                     HospId = x.HospId,
+                    HospName = x.HospName,
                     Date = x.Date,
                     BloodRequestId = x.RID,
-                    UnitType = x.UType,
+                    UnitType = x.UnitType,
                     UnitDonor = x.UnitDonor,
                     UnitOffered = x.UnitOffered,
                     UnitRequired = x.UnitRequired, 
@@ -68,10 +71,21 @@ namespace Infrastructure.Repository.Imp
 
         public Feeds GetFeeds(int id)
         {
+
+            //var query =
+            //   "Select b.BloodRequestId as RID, b.HospId as HospId,b.UnitType as UnitType, b.Date as Date," +
+            //   " b.UnitRequired as UnitRequired, b.UnitOffered as UnitOffered, b.UnitDonor as UnitDonor, u.HospName " +
+            //     "from Feeds b inner join HospitalDetails u on u.HospId = b.HospId Order by Date Desc   ";
+
+            var query = "Select b.BloodRequestId as RID, b.HospId as HospId,b.UnitType as UnitType, b.Date as Date," +
+                        " b.UnitRequired as UnitRequired, b.UnitOffered as UnitOffered, b.UnitDonor as UnitDonor " +
+                        $"from Feeds b Where b.BloodRequestId ={id}";
             using (var cnn = OpenConnection())
             {
-                var tab = cnn.Get<Feeds>(id);
-                return tab;
+                return cnn.Query(query).Select(x=> new Feeds
+                {
+                    UnitRequired =  x.UnitRequired
+                }).SingleOrDefault();
             }
         }
 
